@@ -3,6 +3,7 @@ const {src, dest, parallel, watch} = require('gulp');
 const browserSync   = require('browser-sync').create();
 const del           = require('del');
 
+const twig          = require('gulp-twig');
 const htmlBeautify  = require('gulp-html-beautify');
 
 const less          = require('gulp-less');
@@ -22,9 +23,17 @@ const buildfolder   = './build/';
 
 function html() {
     return src('./src/*.html')
+    .pipe(twig())
     .pipe(htmlBeautify())
     .pipe(dest(distfolder))
     .pipe(browserSync.stream())
+}
+
+function htmlBuild() {
+	return src('./src/*.html')
+	.pipe(twig())
+	.pipe(htmlBeautify())
+	.pipe(dest(buildfolder))
 }
 
 function styles() {
@@ -34,6 +43,14 @@ function styles() {
     .pipe(cleancss( { level: { 1: { specialComments: 0 } }, format: 'beautify' } ))
     .pipe(dest(distfolder))
     .pipe(browserSync.stream())
+}
+
+function stylesBuild() {
+	return src('./src/less/main.less')
+	.pipe(less())
+	.pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
+	.pipe(cleancss( { level: {2: {}} } ))
+	.pipe(dest(buildfolder))
 }
 
 function scripts() {
@@ -68,42 +85,6 @@ function scripts() {
     .on('end', browserSync.reload)
 }
 
-function images() {
-    return src('./src/img/**/*.*')
-    .pipe(newer(distfolder))
-    .pipe(imagemin())
-    .pipe(dest(distfolder + 'img'))
-    .on('end', browserSync.reload)
-}
-
-function startWatch() {
-    browserSync.init({
-        server: { baseDir: distfolder },
-        notify: true,
-        online: true
-    });
-
-    watch('./src/*.html', html);
-    watch('./src/less/**/*.less', styles);
-    watch('./src/js/**/*.js', scripts);
-    watch('./src/img/**/*.*', images);
-}
-
-
-function htmlBuild() {
-    return src('./src/*.html')
-    .pipe(htmlBeautify())
-    .pipe(dest(buildfolder))
-}
-
-function stylesBuild() {
-    return src('./src/less/main.less')
-    .pipe(less())
-    .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
-    .pipe(cleancss( { level: {2: {}} } ))
-    .pipe(dest(buildfolder))
-}
-
 function scriptsBuild() {
     return src('./src/js/main.js')
     .pipe(webpack({
@@ -132,12 +113,32 @@ function scriptsBuild() {
     .pipe(dest(buildfolder))
 }
 
-function imagesBuild() {
+function images() {
     return src('./src/img/**/*.*')
-    .pipe(newer(buildfolder))
+    .pipe(newer(distfolder))
     .pipe(imagemin())
-    .pipe(dest(buildfolder + 'img'))
+    .pipe(dest(distfolder + 'img'))
     .on('end', browserSync.reload)
+}
+
+function imagesBuild() {
+	return src('./src/img/**/*.*')
+	.pipe(newer(buildfolder))
+	.pipe(imagemin())
+	.pipe(dest(buildfolder + 'img'))
+}
+
+function startWatch() {
+	browserSync.init({
+		server: { baseDir: distfolder },
+		notify: true,
+		online: true
+	});
+
+	watch(['./src/*.html', './src/twig-partials/**/*.html'], html);
+	watch('./src/less/**/*.less', styles);
+	watch('./src/js/**/*.js', scripts);
+	watch('./src/img/**/*.*', images);
 }
 
 function clear() {
@@ -151,7 +152,6 @@ function clearBuild() {
 function clearImages() {
     return del(distfolder + 'img/**/*', { force: true })
 }
-
 
 exports.html        = html;
 exports.styles      = styles;

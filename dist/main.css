@@ -1,0 +1,18 @@
+body {
+  color: red
+}
+.header {
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}
+h1 {
+  color: red
+}
+h2 {
+  color: green
+}
+h3 {
+  color: red
+}
