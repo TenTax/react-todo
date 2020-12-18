@@ -1,14 +1,15 @@
 import React from 'react';
 
+import './search-panel.css';
+import ItemStatusFilter from './item-status-filter';
+
 const SearchPanel = () => {
 
-    const searchText = 'search';
-    const searchStyle = {
-        fontSize: '20px'
-    };
-
     return (
-        <input placeholder={searchText} style={searchStyle} />
+        <div className='search-panel'>
+            <input placeholder='type to search' className='form-control' />
+            <ItemStatusFilter />
+        </div>
     );
 }
 
