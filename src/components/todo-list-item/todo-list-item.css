@@ -5,6 +5,7 @@
 
 .todo-list-item-label {
     margin-right: auto;
+    cursor: pointer;
 }
 
 .todo-list-item .btn {

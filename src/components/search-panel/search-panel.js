@@ -1,7 +1,8 @@
 import React from 'react';
 
+import ItemStatusFilter from '../item-status-filter';
+
 import './search-panel.css';
-import ItemStatusFilter from './item-status-filter';
 
 const SearchPanel = () => {
 
