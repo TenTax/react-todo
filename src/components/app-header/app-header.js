@@ -4,7 +4,7 @@ import './app-header.css';
 
 const AppHeader = () => {
     return (
-        <div class="app-header">
+        <div className="app-header">
             <h2>My todo List</h2>
             <span>1 more to do, 3 done</span>
         </div>
