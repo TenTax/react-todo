@@ -4,12 +4,12 @@ import ItemStatusFilter from '../item-status-filter';
 
 import './search-panel.css';
 
-const SearchPanel = () => {
+const SearchPanel = (props) => {
 
     return (
         <div className='search-panel'>
             <input placeholder='type to search' className='form-control' />
-            <ItemStatusFilter />
+            <ItemStatusFilter {...props}/>
         </div>
     );
 }

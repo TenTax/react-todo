@@ -12,6 +12,10 @@ export default class App extends Component {
     idCounter = 1;
 
     state = {
+        filter: {
+            category: 'all',
+            text: ''
+        },
         todoData: [
             this.createTodoItem('Drink coffee'),
             this.createTodoItem('Make awesome app'),
@@ -90,9 +94,17 @@ export default class App extends Component {
         });
     }
 
+    setCategory = (category) => {
+        this.setState({
+            filter: {
+                category
+            }
+        });
+    }
+
     render() {
 
-        const {todoData} = this.state;
+        const {todoData, filter} = this.state;
 
         const doneCount = todoData.filter(el => el.done).length;
         const todoCount = todoData.length - doneCount;
@@ -100,9 +112,10 @@ export default class App extends Component {
         return (
             <div className="app-container container">
                 <AppHeader doneCount={doneCount} todoCount={todoCount} />
-                <SearchPanel />
+                <SearchPanel filter={filter} onItemStatusFilter={this.setCategory}/>
                 <TodoList 
-                    todos={todoData} 
+                    todos={todoData}
+                    filter={filter}
                     onDeleted={this.deleteItem} 
                     onToggleImportant={this.toggleImportant}
                     onToggleDone={this.toggleDone}/>
