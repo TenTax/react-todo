@@ -5,21 +5,7 @@ import TodoListItem from '../todo-list-item';
 import './todo-list.css';
 
 const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone, filter }) => {
-    const elements = todos
-        
-        .filter((el) => {
-            if(filter.category === 'active') {
-                return !el.done;
-            }else if (filter.category === 'done') {
-                return el.done;
-            } else if (filter.category === 'all') {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        
-        .map((el) => {
+    const elements = todos.map((el) => {
         const { id, ...itemProps } = el;
 
         return (

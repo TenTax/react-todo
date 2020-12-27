@@ -2,26 +2,21 @@ import React, { Component } from 'react';
 
 export default class ItemStatusFilter extends Component {
     render() {
-        const {filter: {category}, onItemStatusFilter} = this.props;
-
         return (
             <div className='btn-group'>
                 <button 
                     type='button' 
-                    className={`btn btn-outline-primary ${category === 'all' ? 'active' : ''}`}
-                    onClick={() => onItemStatusFilter('all')}>
+                    className='btn btn-outline-primary active'>
                         All
                 </button>
                 <button 
                     type='button' 
-                    className={`btn btn-outline-primary ${category === 'active' ? 'active' : ''}`}
-                    onClick={() => onItemStatusFilter('active')}>
+                    className='btn btn-outline-primary'>
                         Active
                 </button>
                 <button 
                     type='button' 
-                    className={`btn btn-outline-primary ${category === 'done' ? 'active' : ''}`}
-                    onClick={() => onItemStatusFilter('done')}>
+                    className='btn btn-outline-primary'>
                         Done
                 </button>
             </div>
