@@ -17,7 +17,7 @@ const SearchPanel = ({onSearch, term, ...props}) => {
                 className='form-control'
                 onChange={onSearchChange}
                 value={term} />
-            <ItemStatusFilter />
+            <ItemStatusFilter {...props} />
         </div>
     );
 }
