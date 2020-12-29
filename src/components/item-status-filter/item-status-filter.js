@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 export default class ItemStatusFilter extends Component {
 
     buttons = [
-        { name: 'all', label: 'All' },
-        { name: 'active', label: 'Active' },
-        { name: 'done', label: 'Done' }
+        { name: 'all', label: 'Все' },
+        { name: 'active', label: 'Актив.' },
+        { name: 'done', label: 'Заверш.' }
     ];
 
     render() {
         const { onFilter, filter } = this.props;
 
-        const buttons = this.buttons.map(({name, label}) => {
+        const buttons = this.buttons.map(({ name, label }) => {
 
             const clazz = filter === name ? 'active' : null;
 

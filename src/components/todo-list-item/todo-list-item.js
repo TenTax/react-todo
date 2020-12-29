@@ -21,11 +21,11 @@ const TodoListItem = ({ label, done, important, onDeleted, onToggleImportant, on
                 {label}
             </span>
 
-            <button 
-                type='button' 
+            <button
+                type='button'
                 className='btn btn-outline-danger btn-sm'
                 onClick={onDeleted}>
-                    <i className='fa fa-trash'></i>
+                <i className='fa fa-trash'></i>
             </button>
             <button
                 type='button'

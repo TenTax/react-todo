@@ -4,7 +4,7 @@ import ItemStatusFilter from '../item-status-filter';
 
 import './search-panel.css';
 
-const SearchPanel = ({onSearch, term, ...props}) => {
+const SearchPanel = ({ onSearch, term, ...props }) => {
 
     const onSearchChange = (e) => {
         onSearch(e.target.value);
@@ -12,8 +12,8 @@ const SearchPanel = ({onSearch, term, ...props}) => {
 
     return (
         <div className='search-panel'>
-            <input 
-                placeholder='type to search' 
+            <input
+                placeholder='Поиск...'
                 className='form-control'
                 onChange={onSearchChange}
                 value={term} />

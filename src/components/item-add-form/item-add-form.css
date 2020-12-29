@@ -5,10 +5,10 @@
 @media (max-width: 500px) {
     .item-add-form {
         flex-direction: column;
-        align-items: flex-start;
-    }   
+        align-items   : flex-start;
+    }
 
     .item-add-form .form-control {
         margin-bottom: 10px;
-    } 
+    }
 }

@@ -1,12 +1,12 @@
 .app-header {
-    display: flex;
+    display        : flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 15px;
+    align-items    : baseline;
+    margin-bottom  : 15px;
 }
 
 @media (max-width: 500px) {
     .app-header {
         flex-direction: column;
-    }   
+    }
 }
